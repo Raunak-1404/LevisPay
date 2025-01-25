@@ -6,7 +6,8 @@
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
     "./code": "./src/code.tsx",
-    "./Appbar" : "./src/Appbar.tsx"
+    "./Appbar": "./src/Appbar.tsx",
+    "./SidebarItems": "./src/SidebarItems.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -23,6 +24,7 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }
