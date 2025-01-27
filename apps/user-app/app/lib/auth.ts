@@ -7,12 +7,26 @@ export const authOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
+        Name: {
+          label: "Name",
+          type: "text",
+          placeholder: "Raunak Jijotia",
+        },
         phone: {
           label: "Phone number",
           type: "text",
           placeholder: "1231231231",
         },
-        password: { label: "Password", type: "password" },
+        Email: {
+          label: "Email Address",
+          type: "email",
+          placeholder: "abcd@gmail.com",
+        },
+        password: {
+          label: "Password",
+          type: "password",
+          placeholder: "**********",
+        },
       },
       // TODO: User credentials type from next-aut
       async authorize(credentials: any) {
@@ -34,6 +48,7 @@ export const authOptions = {
               id: existingUser.id.toString(),
               name: existingUser.name,
               phone_Number: existingUser.number,
+              email: existingUser.email,
             };
           }
           return null;
@@ -42,6 +57,8 @@ export const authOptions = {
         try {
           const user = await db.user.create({
             data: {
+              name: credentials.Name,
+              email: credentials.Email,
               number: credentials.phone,
               password: hashedPassword,
             },
@@ -51,6 +68,8 @@ export const authOptions = {
             id: user.id.toString(),
             name: user.name,
             phone_Number: user.number,
+            email: user.email,
+            
           };
         } catch (e) {
           console.error(e);
@@ -71,7 +90,6 @@ export const authOptions = {
     },
     // TODO: can u fix the type here? Using any is bad
     async session({ token, session }: any) {
-        
       if (token) {
         session.user = {
           id: token.sub,
