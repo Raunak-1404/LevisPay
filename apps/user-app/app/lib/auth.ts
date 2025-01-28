@@ -64,12 +64,19 @@ export const authOptions = {
             },
           });
 
+          const userBalance = await db.balance.create({
+            data: {
+              amount: 0,
+              userId : user.id,
+              locked: 0
+            }
+          })
+
           return {
             id: user.id.toString(),
             name: user.name,
             phone_Number: user.number,
             email: user.email,
-            
           };
         } catch (e) {
           console.error(e);
