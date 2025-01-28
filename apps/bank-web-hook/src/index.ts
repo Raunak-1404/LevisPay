@@ -4,26 +4,26 @@ import db from '@repo/db/client';
 const app = express();
 app.use(express.json());
 
-app.post("/hdfcWebhook", async ({req, res}: any) => {
-
-
+app.post("/hdfcWebhook", async (req,res) => {
     interface PaymentInformation {
         token: string;
-        userId: number;
-        amount: number;
+        userId: string;
+        amount: string;
     }
 
+   
     const paymentInformation: PaymentInformation = {
         token: req.body.token,
         userId : req.body.userId,
         amount: req.body.amount,
     }
 
+
     try {
         await db.$transaction([
             db.balance.update({
                 where: {
-                    userId: paymentInformation.userId
+                    userId: Number(paymentInformation.userId)
                 },
                 data: {
                     amount: {
@@ -45,6 +45,14 @@ app.post("/hdfcWebhook", async ({req, res}: any) => {
         })
     } catch (error) {
         console.error(error);
+        db.onRampTransaction.update({
+            where: {
+                token: paymentInformation.token
+            },
+            data: {
+                status: "FAILED"
+            }
+        })
         res.status(411).json({
             message: "Payment failed"
         })
