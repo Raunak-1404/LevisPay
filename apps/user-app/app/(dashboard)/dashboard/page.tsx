@@ -47,7 +47,7 @@ export default async function () {
 
       <div className="bg-slate-100 w-full h-full pl-10 pt-5 rounded-3xl ">
         <h2 className="text-2xl text-slate-500 pb-5">Wallet Balance</h2>
-        <h1 className="text-4xl pl-5"> <span className="text-slate-500">&#8377;</span> {balance.amount}</h1>
+        <h1 className="text-4xl pl-5"> <span className="text-slate-500">&#8377;</span> {balance.amount / 100}</h1>
       </div>
     </div>
   );
