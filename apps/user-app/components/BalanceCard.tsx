@@ -1,5 +1,6 @@
+"use client";
 import { Card } from "@repo/ui/card";
-
+import {useState} from "react";
 export const BalanceCard = ({amount, locked}: {
     amount: number;
     locked: number;
