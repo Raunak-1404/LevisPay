@@ -1,8 +1,9 @@
+import prisma from "@repo/db/client";
 import { Card } from "@repo/ui/card";
 
 type Status = "SUCCESS" | "PROCESSING" | "FAILED";
 
-export const OnRampTransactions = ({
+export const OnRampTransactions = async ({
   transactions,
 }: {
   transactions: {
@@ -19,15 +20,22 @@ export const OnRampTransactions = ({
       </Card>
     );
   }
+
   return (
     <Card title="Recent Transactions">
       <div className="pt-2">
         {transactions.map((t, i) => (
           <div key={i} className="flex justify-between">
-            <div>
-              <div className="text-sm">Received INR</div>
-              <div className="text-slate-600 text-xs">
-                {t.time.toDateString()}
+            <div className="flex gap-5">
+              <div>
+                <div className="text-sm">Received INR</div>
+                <div className="text-slate-600 text-xs">
+                  {t.time.toDateString()}
+                </div>
+              </div>
+              <div className="text-sm">
+                <div>Status: {t.status}</div>
+                <div className="text-xs text-slate-600"> BANK: {t.provider}</div>
               </div>
             </div>
             <div className="flex flex-col justify-center">
