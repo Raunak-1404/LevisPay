@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hide scrollbar but allow scrolling */
+/* .hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+} */
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 4px; /* Very thin scrollbar */
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3); /* Light scrollbar */
+  border-radius: 10px; /* Rounded edges */
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Hide track */
+}
