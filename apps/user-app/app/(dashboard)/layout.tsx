@@ -11,9 +11,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="flex flex-col gap-3">
           <SidebarItems href={"/dashboard"} icon={<FaHome />} title="Home" />
           <SidebarItems
-            href={"/transfer"}
+            href={"/P2P"}
             icon={<FaMagnifyingGlass />}
-            title="Explore"
+            title="P2P Transfer"
           />
           <SidebarItems
             href={"/transfer"}
