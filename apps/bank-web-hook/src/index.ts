@@ -1,10 +1,13 @@
 import express from "express";
 import db from '@repo/db/client';
+import prisma from "@repo/db/client";
 
 const app = express();
 app.use(express.json());
 
 app.post("/hdfcWebhook", async (req,res) => {
+
+
     interface PaymentInformation {
         token: string;
         userId: string;
@@ -18,6 +21,18 @@ app.post("/hdfcWebhook", async (req,res) => {
         amount: req.body.amount,
     }
 
+    const statusOfTxn = await prisma.onRampTransaction.findFirst({
+        where:{
+            token: paymentInformation.token
+        }
+    });
+
+    if(statusOfTxn?.status === 'SUCCESS'){
+        res.status(200).json({
+            message: "Payment already successful"
+        })
+        return ;
+    }
 
     try {
         await db.$transaction([
