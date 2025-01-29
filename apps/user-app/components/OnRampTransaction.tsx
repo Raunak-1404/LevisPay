@@ -1,11 +1,10 @@
-import prisma from "@repo/db/client";
 import { Card } from "@repo/ui/card";
 
 type Status = "SUCCESS" | "PROCESSING" | "FAILED";
 
 export const OnRampTransactions = async ({
   transactions,
-  height
+  height,
 }: {
   transactions: {
     time: Date;
@@ -24,9 +23,11 @@ export const OnRampTransactions = async ({
   }
 
   return (
-    
     <Card title="Recent Transactions">
-      <div className="pt-5 overflow-y-auto px-5 thin-scrollbar" style={{ height }}>
+      <div
+        className="pt-5 overflow-y-auto px-5 thin-scrollbar"
+        style={{ height }}
+      >
         {transactions.map((t, i) => (
           <div key={i} className="flex justify-between pb-5">
             <div className="flex gap-5">
@@ -38,7 +39,10 @@ export const OnRampTransactions = async ({
               </div>
               <div className="text-sm">
                 <div>Status: {t.status}</div>
-                <div className="text-xs text-slate-600"> BANK: {t.provider}</div>
+                <div className="text-xs text-slate-600">
+                  {" "}
+                  BANK: {t.provider}
+                </div>
               </div>
             </div>
             <div className="flex flex-col justify-center">
