@@ -1,8 +1,20 @@
+import prisma from "@repo/db/client";
+import { OnRampTransactions } from "../../../components/OnRampTransaction";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../lib/auth";
+import { getOnRampTxns } from "../transfer/page";
 
-export default function () {
-    return (
-        <div>
-            <h1>Transaction Page</h1>
+export default async function () {
+  const transactions = await getOnRampTxns();
+  return (
+    <div className="w-screen px-10 py-4">
+      <h1 className="text-5xl text-[#6a51a6] font-bold">Transactions</h1>
+
+      <div className=" w-full h-[90%] mt-5  ">
+        <div className="px-20 pt-5">
+          <OnRampTransactions transactions={transactions} height={"70vh"} />
         </div>
-    )
-} 
+      </div>
+    </div>
+  );
+}
