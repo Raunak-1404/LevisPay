@@ -5,6 +5,7 @@ type Status = "SUCCESS" | "PROCESSING" | "FAILED";
 
 export const OnRampTransactions = async ({
   transactions,
+  height
 }: {
   transactions: {
     time: Date;
@@ -12,6 +13,7 @@ export const OnRampTransactions = async ({
     status: Status;
     provider: string;
   }[];
+  height?: string;
 }) => {
   if (!transactions.length) {
     return (
@@ -22,10 +24,11 @@ export const OnRampTransactions = async ({
   }
 
   return (
+    
     <Card title="Recent Transactions">
-      <div className="pt-2">
+      <div className="pt-5 overflow-y-auto px-5 thin-scrollbar" style={{ height }}>
         {transactions.map((t, i) => (
-          <div key={i} className="flex justify-between">
+          <div key={i} className="flex justify-between pb-5">
             <div className="flex gap-5">
               <div>
                 <div className="text-sm">Received INR</div>
