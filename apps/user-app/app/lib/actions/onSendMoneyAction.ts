@@ -38,6 +38,7 @@ export async function onSendMoneyAction(number: string, amount: number) {
     }
 
     await prisma.$transaction(async (txn) => {
+      await txn.$queryRaw`SELECT * FROM "Balance" WHERE "userId" = ${Number(from)} FOR UPDATE`;
       const fromBalance = await txn.balance.findUnique({
         where: {
           userId: Number(from.id),
