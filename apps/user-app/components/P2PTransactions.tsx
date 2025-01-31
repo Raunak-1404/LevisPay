@@ -1,17 +1,16 @@
 import { Card } from "@repo/ui/card";
-
-type Status = "SUCCESS" | "PROCESSING" | "FAILED";
-
 export const P2PTransactions = async ({
   height,
   P2PTransactions,
 }: {
   height?: string;
-  P2PTransactions?: {
+  P2PTransactions: {
     senderId: number;
     receiverId: number;
     timeStamp: Date;
-    amount: number;
+    amount: number; 
+    sender:any;
+    reciever: any;
   }[];
 }) => {
   if (!P2PTransactions?.length) {
