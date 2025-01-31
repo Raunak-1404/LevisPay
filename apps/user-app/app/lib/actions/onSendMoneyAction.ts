@@ -71,8 +71,14 @@ export async function onSendMoneyAction(number: string, amount: number) {
         },
       });
     });
+
+    return {
+      status: 200,
+      message: "Money sent",
+    };
   } catch (error) {
     return {
+      status: 403,
       message: "Error while sending",
     };
   }

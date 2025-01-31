@@ -1,6 +1,6 @@
-import { getServerSession } from "next-auth";
+
 import SendMoneyCard from "../../../components/SendMoneyCard";
-import { authOptions } from "../../lib/auth";
+
 
 export default async function () {
   return (
