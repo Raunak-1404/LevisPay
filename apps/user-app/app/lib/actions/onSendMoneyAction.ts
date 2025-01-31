@@ -70,8 +70,16 @@ export async function onSendMoneyAction(number: string, amount: number) {
           },
         },
       });
-    });
 
+      await txn.p2PTransfers.create({
+        data:{
+          amount,
+          senderId: from.id,
+          recieverId: to.id,
+          timestamp: new Date(),
+        }
+      });
+    });
     return {
       status: 200,
       message: "Money sent",
