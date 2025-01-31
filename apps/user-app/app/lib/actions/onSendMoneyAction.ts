@@ -76,7 +76,7 @@ export async function onSendMoneyAction(number: string, amount: number) {
           amount,
           senderId: from.id,
           recieverId: to.id,
-          timestamp: new Date(),
+          timestamp: new Date()
         }
       });
     });
