@@ -9,7 +9,14 @@ export async function getP2PTransactions() {
 
   const transactions = await prisma.p2PTransfers.findMany({
     where: {
-      senderId: Number(session?.user?.id),
+      OR:[
+        {
+          senderId: Number(session?.user?.id)
+        },
+        {
+          recieverId: Number(session?.user?.id)
+        }
+      ]
     },
     include:{
       sender: {
