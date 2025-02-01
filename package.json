@@ -1,5 +1,5 @@
 {
-  "name": "paytm-mega",
+  "name": "levis-pay",
   "private": true,
   "scripts": {
     "build": "turbo build",
