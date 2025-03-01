@@ -1,7 +1,4 @@
-import prisma from "@repo/db/client";
 import { OnRampTransactions } from "../../../components/OnRampTransaction";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../lib/auth";
 import { getOnRampTxns } from "../transfer/page";
 
 export default async function () {

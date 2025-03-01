@@ -5,7 +5,6 @@ import { authOptions } from "../auth";
 import prisma from "@repo/db/client";
 
 export async function onRampTransactions(provider: string, amount: number) {
-    type StatusTYPE = "PROCESSING" | "COMPLETED" | "FAILED";
     const session  = await getServerSession(authOptions);
     if(!session?.user || !session?.user?.id) {
         return {
