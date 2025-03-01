@@ -1,5 +1,7 @@
 import Image, { type ImageProps } from "next/image";
 
 export default function Home() {
-  return <div></div>;
+  return <div>
+    Hello from Merchant App
+  </div>;
 }
