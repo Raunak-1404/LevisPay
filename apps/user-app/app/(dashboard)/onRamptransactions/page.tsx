@@ -1,7 +1,7 @@
 import { OnRampTransactions } from "../../../components/OnRampTransaction";
 import { getOnRampTxns } from "../transfer/page";
 
-export default async function () {
+export default async function OnRampTXN() {
   const transactions = await getOnRampTxns();
   return (
     <div className="w-screen px-10 py-4">

@@ -88,6 +88,7 @@ export async function onSendMoneyAction(number: string, amount: number) {
     return {
       status: 403,
       message: "Error while sending",
+      error
     };
   }
 }

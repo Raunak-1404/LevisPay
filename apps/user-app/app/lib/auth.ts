@@ -2,6 +2,14 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import db from "@repo/db/client";
 
+// interface UserCredentialsType{
+//   Name: string,
+//   phone: string,
+//   Email: string,
+//   password: string
+//   csrfToken: string
+// } 
+
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -29,6 +37,7 @@ export const authOptions = {
         },
       },
       // TODO: User credentials type from next-aut
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       async authorize(credentials: any) {
         // Do zod validation, OTP validation here
         const hashedPassword = await bcrypt.hash(credentials.password, 10);
@@ -64,7 +73,7 @@ export const authOptions = {
             },
           });
 
-          const userBalance = await db.balance.create({
+          await db.balance.create({
             data: {
               amount: 0,
               userId : user.id,

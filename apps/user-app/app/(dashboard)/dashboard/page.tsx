@@ -24,16 +24,15 @@ const getBalance = async () => {
       amount: balance?.amount || 0,
     };
   } catch (error) {
-    console.log(error);
-
     return {
       amount: 0,
       msg: "Error fetching balance",
+      error
     };
   }
 };
 
-export default async function () {
+export default async function Dashboard() {
   const userDetails = await getUserDetails();
   const balance = await getBalance();
   return (

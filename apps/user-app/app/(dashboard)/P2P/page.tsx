@@ -4,7 +4,22 @@ import SendMoneyCard from "../../../components/SendMoneyCard";
 import { authOptions } from "../../lib/auth";
 import prisma from "@repo/db/client";
 
-export async function getP2PTransactions() {
+type P2PTransaction = {
+  senderId: number;
+  receiverId: number;
+  timeStamp: Date;
+  amount: number;
+  sender: {
+    name: string;
+    number: string;
+  };
+  reciever: {
+    name: string;
+    number: string;
+  };
+}
+
+export async function getP2PTransactions() : Promise<P2PTransaction[]> {
   const session = await getServerSession(authOptions);
 
   const transactions = await prisma.p2PTransfers.findMany({
@@ -21,19 +36,20 @@ export async function getP2PTransactions() {
     include:{
       sender: {
         select:{
-          name: true || "",
-          number: true || ""
+          name: true ,
+          number: true 
         }
       },
       reciever: {
         select:{
-          name: true || "",
-          number: true || ""
+          name: true ,
+          number: true 
         }
       }
     }
   });
 
+  
 
   return transactions.map((txn) => ({
     senderId : txn.senderId,
@@ -46,7 +62,7 @@ export async function getP2PTransactions() {
 
 } 
 
-export default async function () {
+export default async function P2P() {
   return (
     <div className="w-screen px-10 py-4 ">
       <h1 className="text-5xl text-[#6a51a6] font-bold">
